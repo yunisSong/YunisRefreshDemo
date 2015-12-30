@@ -14,7 +14,7 @@
 @end
 @implementation UIScrollView (YunisRefresh)
 static char MJRefreshHeaderViewKey;
-static char MJRefreshFooterViewKey;
+//static char MJRefreshFooterViewKey;
 - (void)setHeader:(YunisHeardView *)header {
     [self willChangeValueForKey:@"MJRefreshHeaderViewKey"];
     objc_setAssociatedObject(self, &MJRefreshHeaderViewKey,
@@ -45,5 +45,9 @@ static char MJRefreshFooterViewKey;
 - (void)headerEndRefreshing
 {
     [self.header endRefreshing];
+}
+- (void)headerBeginRefreshing
+{
+    [self.header beginRefreshing];
 }
 @end

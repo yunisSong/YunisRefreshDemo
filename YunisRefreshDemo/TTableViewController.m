@@ -46,10 +46,23 @@
         NSLog(@"开始加载数据。。。。。");
     }];
     
+//    [self.tableView headerBeginRefreshing];
+    
 //    [self.refreshControl beginRefreshing];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshing1) name:@"PPPPPP" object:nil];
-
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path addArcWithCenter:self.view.center radius:100.0 startAngle:0.0 endAngle:180.0 clockwise:YES];
+    [path stroke];
     
+    
+    [TTableViewController drawEllipse:self.view.center withColor:[UIColor redColor] withRad:.5];
+}
+
++(void)drawEllipse:(CGPoint)point withColor:(UIColor*)color withRad:(float)rad
+{
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(ctx, [color CGColor]);
+    CGContextFillEllipseInRect(ctx, CGRectMake(point.x-rad, point.y-rad, 2*rad, 2*rad));
 }
 - (void)endRefreshing1
 {

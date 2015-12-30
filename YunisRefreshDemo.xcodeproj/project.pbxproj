@@ -25,6 +25,8 @@
 		8BAB2FB51C327152006656AC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAB2FAA1C327152006656AC /* NSLayoutConstraint+MASDebugAdditions.m */; settings = {ASSET_TAGS = (); }; };
 		8BAB2FB61C327152006656AC /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAB2FAC1C327152006656AC /* View+MASAdditions.m */; settings = {ASSET_TAGS = (); }; };
 		8BAB2FB91C329042006656AC /* UIScrollView+YunisRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAB2FB81C329042006656AC /* UIScrollView+YunisRefresh.m */; settings = {ASSET_TAGS = (); }; };
+		8BAB2FBF1C33CCD1006656AC /* RoundAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAB2FBE1C33CCD1006656AC /* RoundAnimationView.m */; settings = {ASSET_TAGS = (); }; };
+		8BAB2FC21C33CD90006656AC /* CAAnimation+CoreRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BAB2FC11C33CD90006656AC /* CAAnimation+CoreRefresh.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,10 @@
 		8BAB2FAD1C327152006656AC /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		8BAB2FB71C329042006656AC /* UIScrollView+YunisRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YunisRefresh.h"; sourceTree = "<group>"; };
 		8BAB2FB81C329042006656AC /* UIScrollView+YunisRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YunisRefresh.m"; sourceTree = "<group>"; };
+		8BAB2FBD1C33CCD1006656AC /* RoundAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundAnimationView.h; sourceTree = "<group>"; };
+		8BAB2FBE1C33CCD1006656AC /* RoundAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundAnimationView.m; sourceTree = "<group>"; };
+		8BAB2FC01C33CD90006656AC /* CAAnimation+CoreRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+CoreRefresh.h"; sourceTree = "<group>"; };
+		8BAB2FC11C33CD90006656AC /* CAAnimation+CoreRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+CoreRefresh.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,10 @@
 				8BAB2F911C3256BD006656AC /* TTableViewController.m */,
 				8BAB2F931C3258CC006656AC /* YunisHeardView.h */,
 				8BAB2F941C3258CC006656AC /* YunisHeardView.m */,
+				8BAB2FBD1C33CCD1006656AC /* RoundAnimationView.h */,
+				8BAB2FBE1C33CCD1006656AC /* RoundAnimationView.m */,
+				8BAB2FC01C33CD90006656AC /* CAAnimation+CoreRefresh.h */,
+				8BAB2FC11C33CD90006656AC /* CAAnimation+CoreRefresh.m */,
 				8BAB2FB71C329042006656AC /* UIScrollView+YunisRefresh.h */,
 				8BAB2FB81C329042006656AC /* UIScrollView+YunisRefresh.m */,
 				8BAB2F961C327152006656AC /* Masonry */,
@@ -229,6 +239,8 @@
 			files = (
 				8BAB2FB51C327152006656AC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				8BAB2F921C3256BD006656AC /* TTableViewController.m in Sources */,
+				8BAB2FC21C33CD90006656AC /* CAAnimation+CoreRefresh.m in Sources */,
+				8BAB2FBF1C33CCD1006656AC /* RoundAnimationView.m in Sources */,
 				8BAB2FB31C327152006656AC /* MASViewConstraint.m in Sources */,
 				8BAB2F811C325686006656AC /* ViewController.m in Sources */,
 				8BAB2FB91C329042006656AC /* UIScrollView+YunisRefresh.m in Sources */,
@@ -388,6 +400,7 @@
 				8BAB2F8F1C325686006656AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

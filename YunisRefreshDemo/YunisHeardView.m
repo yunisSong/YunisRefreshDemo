@@ -10,7 +10,7 @@
 #import "YunisHeardView.h"
 
 #define MAS_SHORTHAND_GLOBALS
-
+#import "RoundAnimationView.h"
 #import "Masonry.h"
 
 
@@ -26,7 +26,7 @@ static const CGFloat beginRefresh = 70.f;
 
 @property(nonatomic,strong)UILabel *stateLabel;
 
-
+@property (strong, nonatomic) RoundAnimationView *showView;
 
 @property(nonatomic)BOOL isShouldRefresh;/**<是否到达刷新位置*/
 @property(nonatomic)BOOL isAlrdayRefresh;/**<正在刷新刷新位置*/
@@ -92,7 +92,21 @@ static const CGFloat beginRefresh = 70.f;
         
         NSLog(@"ppp == %@",NSStringFromCGRect(self.frame));
 //        [_scrollView addSubview:self];
-        self.backgroundColor = [UIColor redColor];
+//        self.backgroundColor = [UIColor redColor];
+        
+        
+        self.showView = ({
+            RoundAnimationView *t = [RoundAnimationView new];
+            t;
+        });
+        
+        [self addSubview:self.showView];
+        
+        [self.showView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.equalTo(CGSizeMake(40, 40));
+            make.centerY.equalTo(self.stateLabel);
+            make.right.equalTo(self.stateLabel.mas_left).offset(- 10);
+        }];
     }
 }
 - (void)dealloc
@@ -144,7 +158,9 @@ static const CGFloat beginRefresh = 70.f;
 - (void)endRefreshing
 {
 
+    self.showView.refreshing=NO;
     
+    self.showView.progress=1.0f;
     [UIView animateWithDuration:.5
                           delay:0.0
          usingSpringWithDamping:.5
@@ -164,6 +180,8 @@ static const CGFloat beginRefresh = 70.f;
 
     
 }
+
+
 #pragma mark - Private Method
 //本类方法
 
@@ -173,6 +191,9 @@ static const CGFloat beginRefresh = 70.f;
                      ofObject:(id)object
                        change:(NSDictionary *)change
                       context:(void *)context{
+    if (self.m_Type == YunisRefreshType_refreshing) {
+        return;
+    }
     [self calculateShift];
 }
 -(void)calculateShift{
@@ -181,6 +202,17 @@ static const CGFloat beginRefresh = 70.f;
                               0.f,
                               self.scrollView.frame.size.width,
                               self.scrollView.contentOffset.y)];
+    
+    
+    CGFloat offsetY=self.scrollView.contentOffset.y+self.scrollView.contentInset.top;
+    
+    CGFloat currentOffsetY = ABS(offsetY);
+    
+    // 头部控件刚好出现的offsetY
+    CGFloat happenOffsetY = beginRefresh ;
+    
+    //进度条处理
+    [self progressSetWithCurrentOffsetY:currentOffsetY happenOffsetY:happenOffsetY];
     
     if (self.scrollView.isDragging) {
         // 普通 和 即将刷新 的临界点
@@ -196,6 +228,38 @@ static const CGFloat beginRefresh = 70.f;
         self.m_Type = YunisRefreshType_refreshing;
     }
 
+}
+-(void)progressSetWithCurrentOffsetY:(CGFloat)currentOffsetY happenOffsetY:(CGFloat)happenOffsetY{
+    
+    
+    if(currentOffsetY<=happenOffsetY){
+        CGFloat deltaY= 40;
+        CGFloat nowY=currentOffsetY-deltaY;
+        self.showView.progress=.00001f;
+        if(nowY<=0) return;
+        
+        //计算进度
+        CGFloat progress=nowY/(happenOffsetY-deltaY);
+        
+        //异常处理
+        if(progress<=0) progress=0.f;
+        if(progress>=1) progress=1.f;
+        
+        
+        self.showView.progress=progress;
+        
+    }else{
+        
+        self.showView.progress=1.0f;
+    }
+    
+    
+}
++(void)drawEllipse:(CGPoint)point withColor:(UIColor*)color withRad:(float)rad
+{
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(ctx, [color CGColor]);
+    CGContextFillEllipseInRect(ctx, CGRectMake(point.x-rad, point.y-rad, 2*rad, 2*rad));
 }
 #pragma mark - Event Response
 //点击响应事件
@@ -230,13 +294,15 @@ static const CGFloat beginRefresh = 70.f;
             //正在刷新
              self.stateLabel.text = @"刷新中。。。";
             [self beginRefreshing];
+             self.showView.refreshing=YES;
             break;
         }
         case YunisRefreshType_nomore: {
             //还没有刷新
             
              self.stateLabel.text = @"下拉刷新";
-            
+            //通知showView开始刷新
+            self.showView.refreshing=NO;
             break;
         }
         default: {

@@ -17,7 +17,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+//    NSArray *familys = [UIFont familyNames];
+//    
+//    for (int i = 0; i < [familys count]; i++)
+//    {
+//        NSString *family = [familys objectAtIndex:i];
+//        NSLog(@"=====Fontfamily:%@", family);
+//        NSArray *fonts = [UIFont fontNamesForFamilyName:family];
+//        for(int j = 0; j < [fonts count]; j++)
+//        {
+//            NSLog(@"***FontName:%@", [fonts objectAtIndex:j]);
+//        }
+//    }
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     self.window = [[UIWindow alloc] initWithFrame:screenBounds];
     
